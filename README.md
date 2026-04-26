@@ -134,6 +134,8 @@ If the repository is somewhere else, replace the path with your local clone path
 
 Pi is a coding agent harness that supports skills, project instructions, tool access, and file edits through an agent interface.
 
+Project link: <https://pi.dev>
+
 ### Install this skill for Pi
 
 Preferred global skill path:
