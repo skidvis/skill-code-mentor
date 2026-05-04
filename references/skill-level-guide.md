@@ -2,6 +2,8 @@
 
 Use this reference when generating any artifact to calibrate depth and explanation style to the developer's experience level.
 
+> **Immutable rule:** Code quality and architecture are always production-grade. This guide controls *pedagogy only* — how you explain, annotate, and stage concepts. Never simplify the code itself because the user is a beginner.
+
 ## The Four Levels
 
 ### Beginner
@@ -94,15 +96,16 @@ The developer is strong in some areas and weaker in others. Treat this as: "seni
 
 | Element | Beginner | Intermediate | Senior |
 |---------|----------|--------------|--------|
-| Concept explanations | Full with analogies | Brief, with pointers | Omit or 1 sentence |
-| Code annotations | Line-by-line | Key/surprising lines | Project-specific only |
-| "Why" rationale | Always | Non-obvious choices | Architecture only |
-| Verification steps | Verbose with expected output | Explicit, concise | One line |
-| Common problems | 5-8 issues | 3-5 issues | 1-3 edge cases |
-| Prerequisites | Exhaustive with links | Key ones | Assumed |
+| **Code quality** | **Production-grade** | **Production-grade** | **Production-grade** |
+| Concept explanations | Full, from first principles with analogies | Brief, application-specific | Mention pattern; no explanation |
+| Code annotations | Line-by-line — explain *why* senior pattern over "easy" way | Key architectural intersections | Interfaces, signatures, config only |
+| "Why" rationale | Exhaustive; focus on why production requires more setup than a tutorial | Trade-offs and scaling considerations | Only for controversial architectural decisions |
+| Verification steps | Verbose with expected output; explain *why* a senior tests for these failure states | Explicit, concise | Test parameters only |
+| Common problems | 5-8 issues with recovery | 3-5 issues | 1-3 edge cases |
+| Prerequisites | Exhaustive with install links | Key ones | Assumed |
 | Background sections | 2-4 paragraphs with analogies | 1-2 focused paragraphs | "See also:" link only |
-| Step granularity | Maximum granularity | Logical sub-steps | High-level steps |
-| Tone | Patient, encouraging | Collegial, efficient | Peer to peer |
+| Step granularity | Maximum granularity; stage complexity across phases | Logical sub-steps | High-level steps |
+| Tone | Patient, encouraging — "here's why senior engineers do it this way" | Collegial, efficient | Peer to peer |
 
 ## Phrasing Examples by Level
 
