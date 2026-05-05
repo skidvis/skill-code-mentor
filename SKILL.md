@@ -50,12 +50,12 @@ This skill is a mentor, not a task manager. The output is a guide a human reads,
 ## Workflow Pipeline
 
 ```
-INTAKE → SKILL ASSESSMENT → CODEBASE EXPLORATION → CONTRACT → ROADMAP → PHASE GUIDES → HANDOFF
-            ↓                      ↓                   ↓          ↓           ↓             ↓
-       Understand              Explore existing    confidence   Break      Teach each    How to
-       developer's             code + patterns     < 95%?      into       phase step    start
-       experience level                              ↓         phases     by step       Phase 1
-                                               ASK QUESTIONS
+INTAKE → SKILL ASSESSMENT → CODEBASE EXPLORATION → CONTRACT → ROADMAP → PHASE GUIDES → TASK LIST → HANDOFF
+            ↓                      ↓                   ↓          ↓           ↓              ↓           ↓
+       Understand              Explore existing    confidence   Break      Teach each    Checklist   How to
+       developer's             code + patterns     < 95%?      into       phase step    with refs   start
+       experience level                              ↓         phases     by step       to guide    Phase 1
+                                               ASK QUESTIONS                            sections
                                                     ↓
                                             (loop until ≥95%)
 ```
@@ -272,6 +272,35 @@ Options:
 
 Iterate until approved.
 
+### 5.4 Generate Task List
+
+After guides are approved, generate `task-list.md` — a single-file checklist that maps every verifiable step across all guides into one scannable list the developer can check off as they work.
+
+**Format:**
+
+```markdown
+# {Project Name} — Task List
+
+## Phase 1: {Phase Title}
+
+- [ ] {step description} — 1.1
+- [ ] {step description} — 1.2
+- [ ] {step description} — 1.3
+
+## Phase 2: {Phase Title}
+
+- [ ] {step description} — 2.1
+- [ ] {step description} — 2.2
+```
+
+**Reference notation:** `{phase}.{step}` where `{phase}` is the guide number and `{step}` is the step number within that guide. Example: `1.3` = `guide-phase-1.md`, Step 3. For single-phase projects using `guide.md`, reference steps as `1.1`, `1.2`, etc.
+
+**Rules:**
+- Include every step that has a **Verify** check — omit purely explanatory or background sections
+- Step descriptions are short (5–8 words), action-first: "Create project folder", "Install dependencies", "Run first migration"
+- Every entry in the task list must be independently verifiable — if a step has no verification, go back and add one to the guide before generating the task list
+- Group by phase with a header matching the guide phase title
+
 ## Phase 6: Handoff
 
 After guides are approved, give the developer a clear starting point.
@@ -332,6 +361,7 @@ guide-phase-1.md      # Phase 1: step-by-step guide with explanations
 guide-phase-2.md      # Phase 2: step-by-step guide (if multi-phase)
 ...
 guide.md              # Single guide for small projects (no phases needed)
+task-list.md          # Flat checklist of every verifiable step, referenced as {phase}.{step}
 ```
 
 ## Bundled Resources
@@ -357,7 +387,8 @@ When generating artifacts, reference these examples for tone, structure, and lev
 - **Explore the codebase** before scoring confidence (unless greenfield).
 - **Score confidence conservatively.** When uncertain, score lower.
 - **Explain why.** Never give a step without context for non-obvious actions.
-- **Always include verification steps.** The developer needs to know each step worked.
+- **Every step must be verifiable.** Each step in every guide requires a "Verify" check. If a step has no clear verification, either combine it with a step that does or add an explicit check. The task list is generated from verifiable steps only — a step with no verification doesn't belong in it.
 - **Call out common pitfalls.** Anticipate where developers get stuck.
 - **Small projects don't need phases.** Generate a single guide if scope is small.
+- **Always generate the task list.** `task-list.md` is a required output, not optional. Generate it after guides are approved.
 - Always write artifacts to files. Don't just display them in chat.
